@@ -7,19 +7,26 @@ Vue.use(Vuex);
 
 export const state = () => (
   {
-    feeds: []
+    feeds: [],
+    searchQuery: ''
   }
 );
 
 export const mutations = {
   setFeeds(state, feeds) {
     state.feeds = feeds
+  },
+  setSearchQuery(state, query) {
+    state.searchQuery = query
   }
 };
 
 export const actions = {
-  loadFeeds({ commit }) {
+  loadFeeds ({ commit }) {
     commit('setFeeds', defaultData);
+  },
+  updateSearchQuery ({ commit }, query) {
+    commit('setSearchQuery', query);
   }
 };
 

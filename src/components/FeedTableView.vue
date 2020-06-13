@@ -9,7 +9,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="feed in feeds" :key="`row-${feed.id}`">
+        <tr v-for="feed in feeds" :key="`tr-${feed.id}`">
           <td>{{feed.id}}</td>
           <td>{{feed.title}}</td>
           <td>{{feed.description}}</td>
