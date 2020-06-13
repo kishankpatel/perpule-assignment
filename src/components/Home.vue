@@ -27,6 +27,8 @@ export default {
   },
   created () {
     this.initializeData();
+    this.$store.dispatch('updateSortBy', this.$route.query.sortBy);
+    this.$store.dispatch('updateSearchQuery', this.$route.query.searchQuery);
   },
   computed: {
     ...mapState(['feeds', 'searchQuery', 'sortBy']),
@@ -53,13 +55,13 @@ export default {
       this.$store.dispatch('loadFeeds');
     },
     sortFeeds(feeds) {
-      if (this.sortBy === '') {
+      if (this.sortBy === undefined || this.sortBy === '') {
         return feeds;
       }
       return feeds.sort((a, b) => a[this.sortBy].localeCompare(b[this.sortBy]));
     },
     searchFeeds (searchQuery) {
-      if(searchQuery.length) {
+      if(searchQuery !== undefined && searchQuery.length) {
         return this.feeds.filter(feed => {
           if (this.requireExactMatch) {
             if (feed.title.toLocaleLowerCase().indexOf(this.parsedQuery) !== -1 || feed.description.toLocaleLowerCase().indexOf(this.parsedQuery) !== -1) {

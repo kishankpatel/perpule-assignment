@@ -1,6 +1,6 @@
 <template>
   <div>
-    <select name="sort" v-model="sortBy" @change="changeSortBy()">
+    <select name="sort" v-model="sortVal" @change="changeSortBy()">
       <option value="">- Sort by -</option>
       <option v-for="(label, option) in sortOptions" :key="`option-${option}`" :value="option">{{label}}</option>
     </select>
@@ -9,16 +9,27 @@
 
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data () {
     return {
-      sortBy: '',
+      sortVal: '',
       sortOptions: { title: "Title", dateLastEdited: "Last Edited" }
     }
   },
+  created () {
+    if (this.$route.query.sortBy) {
+      this.sortVal = this.$route.query.sortBy;
+    }
+  },
+  computed: {
+    ...mapState(['sortBy'])
+  },
   methods: {
     changeSortBy () {
-      this.$store.dispatch('updateSortBy', this.sortBy)
+      this.$store.dispatch('updateSortBy', this.sortVal);
+      let query = {...this.$route.query, sortBy: this.sortVal }
+      this.$router.push({ path: '/', query: query });
     }
   }
 }

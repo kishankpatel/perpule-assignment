@@ -2,7 +2,7 @@
   <div class="search_box">
     <input
       type="text"
-      v-model.trim="searchQuery"
+      v-model.trim="queryString"
       placeholder="Search..."
       @keyup.enter="changeSearchQuery()"
     />
@@ -16,18 +16,37 @@
 
 <script>
 import utility from '../mixins/utility';
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import { mapState } from 'vuex';
+
+Vue.use(VueRouter)
 export default {
   data () {
     return {
-      searchQuery: ''
+      queryString: ''
     }
+  },
+  mixins: [utility],
+  created () {
+    /*eslint-disable*/
+    debugger
+    if (this.$route.query.searchQuery) {
+      this.queryString = this.$route.query.searchQuery;
+    }
+  },
+  computed: {
+    ...mapState(['searchQuery'])
   },
   methods : {
     changeSearchQuery () {
-      this.$store.dispatch('updateSearchQuery', this.searchQuery);
+      /*eslint-disable*/
+      debugger
+      this.$store.dispatch('updateSearchQuery', this.queryString);
+      let query = {...this.$route.query, searchQuery: this.queryString }
+      this.$router.push({ path: '/', query: query });
     }
-  },
-  mixins: [utility]
+  }
 }
 </script>
 
