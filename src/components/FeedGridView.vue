@@ -10,6 +10,7 @@
           <img :src="getImgUrl(feed.image)" alt="Image">
           <div class="p15">
             <div class="feed_title" :title="feed.title">{{feed.title}}</div>
+            <div class="feed_date">Last Edited: {{feed.dateLastEdited}}</div>
             <div class="feed_desc">{{feed.description}}</div>
           </div>
         </div>
@@ -20,17 +21,13 @@
 </template>
 
 <script>
+import utility from '../mixins/utility';
 export default {
   name: 'GridView',
   props: {
     feeds: Array
   },
-  methods: {
-    getImgUrl(imgName) {
-      var images = require.context('../assets/images', false)
-      return images('./' + imgName)
-    }
-  }
+  mixins: [utility]
 };
 </script>
 
@@ -51,6 +48,9 @@ export default {
     overflow: auto;
     margin-top: 10px;
   }
-
+  .feed_date {
+    font-size: 13px;
+    margin-top: 10px;
+  }
 
 </style>

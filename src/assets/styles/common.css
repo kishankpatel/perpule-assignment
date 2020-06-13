@@ -74,12 +74,9 @@
 .table td:first-child {
   text-align: center;
 }
-
-
-
-
-
-
+.text-grey {
+  color: grey;
+}
 
 
 @media (min-width: 480px) {
@@ -98,7 +95,7 @@
     width: 85%;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
   .md4 {
     width: 33.33%;
   }

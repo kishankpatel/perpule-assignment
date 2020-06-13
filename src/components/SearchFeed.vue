@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import utility from '../mixins/utility';
 export default {
   data () {
     return {
@@ -23,13 +24,10 @@ export default {
   },
   methods : {
     changeSearchQuery () {
-      this.$store.dispatch('updateSearchQuery', this.searchQuery)
-    },
-    getImgUrl(imgName) {
-      var images = require.context('../assets/images', false)
-      return images('./' + imgName)
+      this.$store.dispatch('updateSearchQuery', this.searchQuery);
     }
-  }
+  },
+  mixins: [utility]
 }
 </script>
 

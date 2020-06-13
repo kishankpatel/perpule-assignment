@@ -6,6 +6,7 @@
           <th>SL.</th>
           <th>Title</th>
           <th>Description</th>
+          <th>Last Edited</th>
         </tr>
       </thead>
       <tbody>
@@ -13,6 +14,7 @@
           <td>{{feed.id}}</td>
           <td>{{feed.title}}</td>
           <td>{{feed.description}}</td>
+          <td>{{feed.dateLastEdited}}</td>
         </tr>
       </tbody>
     </table>
@@ -20,11 +22,13 @@
 </template>
 
 <script>
+import utility from '../mixins/utility';
 export default {
   name: 'TableView',
   props: {
     feeds: Array
-  }
+  },
+  mixins: [utility]
 };
 </script>
 
@@ -32,5 +36,8 @@ export default {
 <style scoped>
   .table_view {
     margin: 30px 0;
+  }
+  .table_view tr th:nth-child(4), .table_view tr td:nth-child(4) {
+    min-width: 100px;
   }
 </style>

@@ -8,7 +8,8 @@ Vue.use(Vuex);
 export const state = () => (
   {
     feeds: [],
-    searchQuery: ''
+    searchQuery: '',
+    sortBy: ''
   }
 );
 
@@ -18,6 +19,9 @@ export const mutations = {
   },
   setSearchQuery(state, query) {
     state.searchQuery = query
+  },
+  setSortBy(state, value) {
+    state.sortBy = value
   }
 };
 
@@ -27,21 +31,14 @@ export const actions = {
   },
   updateSearchQuery ({ commit }, query) {
     commit('setSearchQuery', query);
+  },
+  updateSortBy ({ commit }, value) {
+    commit('setSortBy', value);
   }
-};
-
-export const getters = {
-  // services(state) {
-  //   return state.services;
-  // },
-  // modifiers(state) {
-  //   return state.modifiers;
-  // },
 };
 
 export default new Vuex.Store({
   state,
   mutations,
-  actions,
-  getters,
+  actions
 });
