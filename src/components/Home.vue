@@ -3,17 +3,20 @@
     <h1>Feeds</h1>
     <FilterData />
     <FeedGridView :feeds="feeds" />
+    <FeedTableView :feeds="feeds" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import FeedGridView from './FeedGridView'
+import FeedTableView from './FeedTableView'
 import FilterData from './Filter'
 export default {
   name: 'App',
   components: {
     FeedGridView,
+    FeedTableView,
     FilterData
   },
   data () {
@@ -36,11 +39,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-  .container {
-    width: 80%;
-    margin: 0 auto;
-  }
-</style>
-

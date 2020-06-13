@@ -1,14 +1,17 @@
 <template>
   <div class="header">
-    <ul>
-      <li>Home</li>
-    </ul>
+    <div class="container">
+      <ul>
+        <li>Home</li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <style scoped>
   ul {
     margin: 0;
+    padding: 0;
   }
   li {
     list-style: none;
